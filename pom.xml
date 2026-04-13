@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ofp</groupId>
 	<artifactId>payment-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>payment-service</name>
 	<description>Event-driven microservice responsible for payment authorization within the Order Fulfillment Platform</description>
 	<url/>
