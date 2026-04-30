@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ofp.paymentservice.dto.PaymentResponse;
-import com.ofp.paymentservice.repository.PaymentRepository;
+import com.ofp.paymentservice.service.PaymentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PaymentController {
 
-	private final PaymentRepository paymentRepository;
+	private final PaymentService paymentService;
 
 	@GetMapping("/order/{orderId}")
 	public ResponseEntity<PaymentResponse> getPaymentByOrderId(@PathVariable UUID orderId) {
 		log.info("Received get payment request for orderId {}", orderId);
 
-		return paymentRepository.findByOrderId(orderId)
+		return paymentService.findByOrderId(orderId)
 				.map(p -> ResponseEntity.ok(PaymentResponse.builder()
 						.id(p.getId())
 						.orderId(p.getOrderId())

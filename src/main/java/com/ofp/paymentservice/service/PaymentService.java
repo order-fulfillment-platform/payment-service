@@ -1,6 +1,7 @@
 package com.ofp.paymentservice.service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -54,6 +55,10 @@ public class PaymentService {
 		createOutboxEvent(event.getOrderId(), eventType);
 
 		log.info("Payment {} for orderId {}", eventType, event.getOrderId());
+	}
+
+	public Optional<Payment> findByOrderId(UUID orderId) {
+		return paymentRepository.findByOrderId(orderId);
 	}
 
 	private boolean mockAuthorizePayment(StockReservedEvent event) {
